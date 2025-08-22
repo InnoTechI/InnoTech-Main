@@ -1,4 +1,47 @@
+"use client";
+
+import { useState } from "react";
+import LoadingSpinner from "@/components/LoadingSpinner";
+
 export default function Home() {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    message: ""
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Simulate form submission
+    try {
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      setSubmitStatus("success");
+      setFormData({ firstName: "", lastName: "", email: "", message: "" });
+    } catch (error) {
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => setSubmitStatus("idle"), 3000);
+    }
+  };
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.querySelector(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -32,17 +75,23 @@ export default function Home() {
               {/* CTA Buttons - bottom right */}
               <div className="pointer-events-none relative">
                 <div className="pointer-events-auto absolute right-4 bottom-4 sm:right-6 sm:bottom-6 lg:right-8 lg:bottom-8 flex items-center gap-4">
-                  <a href="#services" className="group inline-flex items-center gap-2 rounded-full bg-white/80 backdrop-blur px-5 py-3 text-sm font-semibold text-gray-800 shadow-md ring-1 ring-black/10 hover:bg-white">
+                  <button 
+                    onClick={() => scrollToSection('#services')}
+                    className="group inline-flex items-center gap-2 rounded-full bg-white/80 backdrop-blur px-5 py-3 text-sm font-semibold text-gray-800 shadow-md ring-1 ring-black/10 hover:bg-white transition-all duration-200 hover:scale-105"
+                  >
                     Get Started
                     <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-gray-900 text-white">
                       <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H7" />
                       </svg>
                     </span>
-                  </a>
-                  <a href="#about" className="inline-flex items-center gap-2 rounded-full bg-white/80 backdrop-blur px-5 py-3 text-sm font-medium text-gray-900 shadow-md ring-1 ring-black/10 hover:bg-white">
+                  </button>
+                  <button 
+                    onClick={() => scrollToSection('#about')}
+                    className="inline-flex items-center gap-2 rounded-full bg-white/80 backdrop-blur px-5 py-3 text-sm font-medium text-gray-900 shadow-md ring-1 ring-black/10 hover:bg-white transition-all duration-200 hover:scale-105"
+                  >
                     Learn More
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -56,14 +105,22 @@ export default function Home() {
       {/* About Section */}
       <section id="about" className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+          <div className="mb-10">
+            <h2 className="font-bold text-gray-900"
+              style={{
+                fontFamily: "Inter, ui-sans-serif, system-ui",
+                fontWeight: 700,
+                fontSize: "60px",
+                lineHeight: "70px",
+                letterSpacing: "-0.06em",
+              }}
+            >
               About Us
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-3xl mt-4">
               Inno-Tech is dedicated to providing an ultimate tech platform that seamlessly integrates the latest advancement in technology and innovation. We specialize in Cybersecurity, AI/ML and data science.
             </p>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto mt-4">
+            <p className="text-lg text-gray-600 max-w-3xl mt-4">
               Our mission is to offer expert-led lectures, hand-on workshops, and internships to empower individuals in the tech world.
             </p>
           </div>
@@ -106,99 +163,350 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services Section */}
-      <section id="services" className="py-20 bg-gray-50">
-        <div className="container mx auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
-            <p className="text-gray-600 max-w-3xl mx-auto">Hands-on, industry-aligned programs and services to accelerate your growth.</p>
+      {/* Mission & Vision Section (moved first) */}
+      <section id="mission" className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="mb-10">
+            <h2 className="font-bold text-gray-900"
+              style={{
+                fontFamily: "Inter, ui-sans-serif, system-ui",
+                fontWeight: 700,
+                fontSize: "60px",
+                lineHeight: "70px",
+                letterSpacing: "-0.06em",
+              }}
+            >
+              Our Mission & Vision
+            </h2>
+            <p className="text-gray-600 max-w-3xl mt-4">We are committed to democratizing access to high-quality tech education and building future-ready talent.</p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { title: "Cybersecurity Bootcamps", desc: "Real-world labs and threat modeling" },
-              { title: "AI/ML Programs", desc: "From fundamentals to advanced deep learning" },
-              { title: "Data Science Tracks", desc: "End-to-end analytics and MLOps" },
-              { title: "Workshops & Seminars", desc: "Weekend intensives led by experts" },
-              { title: "Career Mentorship", desc: "Resume, interviews, and project reviews" },
-              { title: "Corporate Training", desc: "Upskill teams with custom curricula" },
-            ].map((card) => (
-              <div key={card.title} className="group rounded-xl p-6 shadow-sm hover:shadow-lg transition-shadow" style={{background:"rgba(17, 27, 58, 1)"}}>
-                <div className="w-12 h-12 rounded-lg bg-white/10 text-blue-200 flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-lg font-semibold text-white">{card.title}</h3>
-                <p className="text-gray-200 mt-2">{card.desc}</p>
-                <a href="#contact" className="inline-flex items-center text-blue-200 mt-4 hover:underline">
-                  Learn more
-                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H7" />
-                  </svg>
-                </a>
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* Excellence */}
+            <div className="rounded-xl p-6 shadow-sm" style={{background:"rgba(17, 27, 58, 1)"}}>
+              <div className="w-[232px] h-[232px] mx-auto mt-[46px] mb-4 overflow-hidden rounded-lg bg-gray-900/10">
+                <img src="/images/5.png" alt="Excellence" className="w-full h-full object-cover" />
               </div>
-            ))}
+              <h3 className="text-lg font-semibold text-white text-center">Excellence</h3>
+              <p className="text-gray-200 mt-2 text-center">Delivering quality education and training for future professionals</p>
+            </div>
+
+            {/* Community */}
+            <div className="rounded-xl p-6 shadow-sm" style={{background:"rgba(17, 27, 58, 1)"}}>
+              <div className="w-[232px] h-[232px] mx-auto mt-[46px] mb-4 overflow-hidden rounded-lg bg-gray-900/10">
+                <img src="/images/6.png" alt="Community" className="w-full h-full object-cover" />
+              </div>
+              <h3 className="text-lg font-semibold text-white text-center">Community</h3>
+              <p className="text-gray-200 mt-2 text-center">Building connections in the tech ecosystem for growth and innovation.</p>
+            </div>
+
+            {/* Innovation */}
+            <div className="rounded-xl p-6 shadow-sm" style={{background:"rgba(17, 27, 58, 1)"}}>
+              <div className="w-[232px] h-[232px] mx-auto mt-[46px] mb-4 overflow-hidden rounded-lg bg-gray-900/10">
+                <img src="/images/7.png" alt="Innovation" className="w-full h-full object-cover" />
+              </div>
+              <h3 className="text-lg font-semibold text-white text-center">Innovation</h3>
+              <p className="text-gray-200 mt-2 text-center">Continuously advancing the frontiers of technology.</p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Offers Section */}
+      {/* Offers Section (second) */}
       <section id="offers" className="py-20 bg-white">
         <div className="container mx-auto px-4">
+          <div className="mb-10">
+            <h2 className="font-bold text-gray-900"
+              style={{
+                fontFamily: "Inter, ui-sans-serif, system-ui",
+                fontWeight: 700,
+                fontSize: "60px",
+                lineHeight: "70px",
+                letterSpacing: "-0.06em",
+              }}
+            >
+              What we Offer
+            </h2>
+            <p className="text-gray-600 max-w-3xl mt-4">
+              Tailored solutions for both aspiring students and experienced IT Professionals.
+            </p>
+          </div>
           <div className="grid lg:grid-cols-2 gap-8">
             {/* For Students */}
-            <div className="rounded-2xl border border-gray-200 p-8 bg-gradient-to-br from-blue-50 to-white">
-              <h3 className="text-2xl font-semibold text-gray-900 mb-2">For Students</h3>
-              <p className="text-gray-600 mb-6">Kickstart your tech career with structured learning paths, mentorship, and real-world projects.</p>
-              <ul className="space-y-3 text-gray-700">
-                <li className="flex items-start gap-2"><span className="text-blue-600 mt-1">•</span> Foundations to advanced tracks</li>
-                <li className="flex items-start gap-2"><span className="text-blue-600 mt-1">•</span> Capstone projects and internships</li>
-                <li className="flex items-start gap-2"><span className="text-blue-600 mt-1">•</span> Career guidance and placement support</li>
+            <div className="rounded-2xl p-8 relative" style={{background:"rgba(17, 27, 58, 1)"}}>
+              {/* Student Image - Top Right Corner */}
+              <div className="absolute -top-4 -right-4 w-24 h-24 lg:w-32 lg:h-32">
+                <img src="/images/9.png" alt="Student Resources" className="w-full h-full object-contain" />
+              </div>
+              
+              <h3 className="text-white mb-2"
+                style={{
+                  fontFamily: "Inter, ui-sans-serif, system-ui",
+                  fontWeight: 500,
+                  fontStyle: "normal",
+                  fontSize: "30px",
+                  lineHeight: "45px",
+                  letterSpacing: "-0.06em",
+                  verticalAlign: "middle",
+                }}
+              >
+                For Students
+              </h3>
+              <p className="text-gray-200 mb-6"
+                style={{
+                  fontFamily: "Inter, ui-sans-serif, system-ui",
+                  fontWeight: 500,
+                  fontStyle: "normal",
+                  fontSize: "30px",
+                  lineHeight: "45px",
+                  letterSpacing: "-0.06em",
+                  verticalAlign: "middle",
+                }}
+              >
+                Jumpstart your tech career
+              </p>
+              <ul className="space-y-3 text-gray-200">
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-300 mt-1">✓</span>
+                  <div>
+                    <span className="font-medium">Access to learning resources</span>
+                    <p className="text-sm text-gray-300">Comprehensive materials and documentation</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-300 mt-1">✓</span>
+                  <div>
+                    <span className="font-medium">Connect with experts</span>
+                    <p className="text-sm text-gray-300">Mentorship and guidance from industry professionals</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-300 mt-1">✓</span>
+                  <div>
+                    <span className="font-medium">Skill refinement</span>
+                    <p className="text-sm text-gray-300">Advanced training and certification programs</p>
+                  </div>
+                </li>
               </ul>
-              <button className="mt-6 inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">Explore Student Paths</button>
+              <button 
+                onClick={() => scrollToSection('#contact')}
+                className="mt-6 inline-flex items-center border border-white text-white px-6 py-3 rounded-lg hover:bg-white hover:text-gray-900 transition-all duration-200 hover:scale-105"
+              >
+                Explore Student Paths
+              </button>
             </div>
 
             {/* For IT Professionals */}
-            <div className="rounded-2xl border border-gray-200 p-8 bg-gradient-to-br from-slate-50 to-white">
-              <h3 className="text-2xl font-semibold text-gray-900 mb-2">For IT Professionals</h3>
-              <p className="text-gray-600 mb-6">Advance your career with specialized upskilling, certifications, and leadership programs.</p>
-              <ul className="space-y-3 text-gray-700">
-                <li className="flex items-start gap-2"><span className="text-blue-600 mt-1">•</span> Specialized certifications</li>
-                <li className="flex items-start gap-2"><span className="text-blue-600 mt-1">•</span> Architect and leadership tracks</li>
-                <li className="flex items-start gap-2"><span className="text-blue-600 mt-1">•</span> Hands-on labs with expert mentors</li>
+            <div className="rounded-2xl p-8 relative" style={{background:"rgba(17, 27, 58, 1)"}}>
+              {/* IT Professional Image - Top Right Corner */}
+              <div className="absolute -top-4 -right-4 w-24 h-24 lg:w-32 lg:h-32">
+                <img src="/images/8.png" alt="IT Professional Resources" className="w-full h-full object-contain" />
+              </div>
+              
+              <h3 className="text-white mb-2"
+                style={{
+                  fontFamily: "Inter, ui-sans-serif, system-ui",
+                  fontWeight: 500,
+                  fontStyle: "normal",
+                  fontSize: "30px",
+                  lineHeight: "45px",
+                  letterSpacing: "-0.06em",
+                  verticalAlign: "middle",
+                }}
+              >
+                For IT Professionals
+              </h3>
+              <p className="text-gray-200 mb-6"
+                style={{
+                  fontFamily: "Inter, ui-sans-serif, system-ui",
+                  fontWeight: 500,
+                  fontStyle: "normal",
+                  fontSize: "30px",
+                  lineHeight: "45px",
+                  letterSpacing: "-0.06em",
+                  verticalAlign: "middle",
+                }}
+              >
+                Advance your expertise
+              </p>
+              <ul className="space-y-3 text-gray-200">
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-300 mt-1">✓</span>
+                  <div>
+                    <span className="font-medium">Hands-on experience</span>
+                    <p className="text-sm text-gray-300">Practical workshops and real-world projects</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-300 mt-1">✓</span>
+                  <div>
+                    <span className="font-medium">Stay ahead of trends</span>
+                    <p className="text-sm text-gray-300">Latest industry insights and emerging technologies</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-300 mt-1">✓</span>
+                  <div>
+                    <span className="font-medium">Network expansion</span>
+                    <p className="text-sm text-gray-300">Connect with like-minded professionals and experts</p>
+                  </div>
+                </li>
               </ul>
-              <button className="mt-6 inline-flex items-center border border-blue-600 text-blue-600 px-6 py-3 rounded-lg hover:bg-blue-50">Explore Pro Tracks</button>
+              <button 
+                onClick={() => scrollToSection('#contact')}
+                className="mt-6 inline-flex items-center border border-white text-white px-6 py-3 rounded-lg hover:bg-white hover:text-gray-900 transition-all duration-200 hover:scale-105"
+              >
+                Explore Pro Tracks
+              </button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Mission & Vision Section */}
-      <section id="mission" className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Our Mission & Vision</h2>
-            <p className="text-gray-600 max-w-3xl mx-auto">We are committed to democratizing access to high-quality tech education and building future-ready talent.</p>
+      {/* Services Section (third) */}
+      <section id="services" className="py-20 bg-gray-50">
+        <div className="container mx auto px-4">
+          <div className="mb-10">
+            <h2 className="font-bold text-gray-900"
+              style={{
+                fontFamily: "Inter, ui-sans-serif, system-ui",
+                fontWeight: 700,
+                fontSize: "60px",
+                lineHeight: "70px",
+                letterSpacing: "-0.06em",
+              }}
+            >
+              Our Services
+            </h2>
+            <p className="text-gray-600 max-w-3xl mt-4">Hands-on, industry-aligned programs and services to accelerate your growth.</p>
+            <p className="text-gray-600 max-w-3xl mt-2">Comprehensive tech education and training programs designed to empower your career growth.</p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { title: "Excellence", desc: "Delivering industry-grade, practical learning" },
-              { title: "Innovation", desc: "Embracing cutting-edge tools and methods" },
-              { title: "Integrity", desc: "Building trust through transparency" },
-              { title: "Impact", desc: "Creating measurable career outcomes" },
-            ].map((value) => (
-              <div key={value.title} className="rounded-xl border border-gray-200 bg-white p-6">
-                <div className="w-10 h-10 rounded-md bg-blue-50 text-blue-600 flex items-center justify-center mb-3">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900">{value.title}</h3>
-                <p className="text-gray-600 mt-2">{value.desc}</p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Cybersecurity */}
+            <div className="group rounded-xl p-6 shadow-sm hover:shadow-lg transition-shadow" style={{background:"rgba(17, 27, 58, 1)"}}>
+              <div className="relative w-[200px] h-[200px] mb-4">
+                <img src="/images/10.png" alt="Cybersecurity" className="w-[200px] h-[200px] object-cover" />
               </div>
-            ))}
+              <h3 className="text-white"
+                style={{
+                  fontFamily: "Inter, ui-sans-serif, system-ui",
+                  fontWeight: 600,
+                  fontSize: "48.16px",
+                  lineHeight: "57.79px",
+                  letterSpacing: "-0.06em",
+                }}
+              >
+                Cybersecurity
+              </h3>
+              <p className="text-gray-200 mt-2 whitespace-pre-line">Comprehensive security training covering
+threat detection, penetration testing, and
+security protocols.</p>
+            </div>
+
+            {/* Certification Training */}
+            <div className="group rounded-xl p-6 shadow-sm hover:shadow-lg transition-shadow" style={{background:"rgba(17, 27, 58, 1)"}}>
+              <div className="relative w-[200px] h-[200px] mb-4">
+                <img src="/images/11.png" alt="Certification Training" className="w-[200px] h-[200px] object-cover" />
+              </div>
+              <h3 className="text-white"
+                style={{
+                  fontFamily: "Inter, ui-sans-serif, system-ui",
+                  fontWeight: 600,
+                  fontSize: "48.16px",
+                  lineHeight: "57.79px",
+                  letterSpacing: "-0.06em",
+                }}
+              >
+                Certification Training
+              </h3>
+              <p className="text-gray-200 mt-2 whitespace-pre-line">Industry-recognized certification
+preparation for major tech platforms and
+framework.</p>
+            </div>
+
+            {/* Tech Workshops */}
+            <div className="group rounded-xl p-6 shadow-sm hover:shadow-lg transition-shadow" style={{background:"rgba(17, 27, 58, 1)"}}>
+              <div className="relative w-[200px] h-[200px] mb-4">
+                <img src="/images/12.png" alt="Tech Workshops" className="w-[200px] h-[200px] object-cover" />
+              </div>
+              <h3 className="text-white"
+                style={{
+                  fontFamily: "Inter, ui-sans-serif, system-ui",
+                  fontWeight: 600,
+                  fontSize: "48.16px",
+                  lineHeight: "57.79px",
+                  letterSpacing: "-0.06em",
+                }}
+              >
+                Tech Workshops
+              </h3>
+              <p className="text-gray-200 mt-2 whitespace-pre-line">Interactive workshops led by industry
+experts covering cutting-edge
+technologies.</p>
+            </div>
+
+            {/* AI / ML */}
+            <div className="group rounded-xl p-6 shadow-sm hover:shadow-lg transition-shadow" style={{background:"rgba(17, 27, 58, 1)"}}>
+              <div className="relative w-[200px] h-[200px] mb-4">
+                <img src="/images/13.png" alt="AI / ML" className="w-[200px] h-[200px] object-cover" />
+              </div>
+              <h3 className="text-white"
+                style={{
+                  fontFamily: "Inter, ui-sans-serif, system-ui",
+                  fontWeight: 600,
+                  fontSize: "48.16px",
+                  lineHeight: "57.79px",
+                  letterSpacing: "-0.06em",
+                }}
+              >
+                AI / ML
+              </h3>
+              <p className="text-gray-200 mt-2 whitespace-pre-line">Advanced AI/ML courses covering neural
+networks, deep learning, and practical
+applications.</p>
+            </div>
+
+            {/* Internship Programs */}
+            <div className="group rounded-xl p-6 shadow-sm hover:shadow-lg transition-shadow" style={{background:"rgba(17, 27, 58, 1)"}}>
+              <div className="relative w-[200px] h-[200px] mb-4">
+                <img src="/images/14.png" alt="Internship Programs" className="w-[200px] h-[200px] object-cover" />
+              </div>
+              <h3 className="text-white"
+                style={{
+                  fontFamily: "Inter, ui-sans-serif, system-ui",
+                  fontWeight: 600,
+                  fontSize: "48.16px",
+                  lineHeight: "57.79px",
+                  letterSpacing: "-0.06em",
+                }}
+              >
+                Internship Programs
+              </h3>
+              <p className="text-gray-200 mt-2 whitespace-pre-line">Structured internship opportunities
+providing real-world experience in tech
+companies.</p>
+            </div>
+
+            {/* Data Science */}
+            <div className="group rounded-xl p-6 shadow-sm hover:shadow-lg transition-shadow" style={{background:"rgba(17, 27, 58, 1)"}}>
+              <div className="relative w-[200px] h-[200px] mb-4">
+                <img src="/images/15.png" alt="Data Science" className="w-[200px] h-[200px] object-cover" />
+              </div>
+              <h3 className="text-white"
+                style={{
+                  fontFamily: "Inter, ui-sans-serif, system-ui",
+                  fontWeight: 600,
+                  fontSize: "48.16px",
+                  lineHeight: "57.79px",
+                  letterSpacing: "-0.06em",
+                }}
+              >
+                Data Science
+              </h3>
+              <p className="text-gray-200 mt-2 whitespace-pre-line">Data Analytics visualization training with
+real-world datasets and industry tools.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -209,33 +517,87 @@ export default function Home() {
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-10">
               <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-3">Contact Us</h2>
-              <p className="text-gray-600">Have questions? Send us a message and we’ll get back to you.</p>
+              <p className="text-gray-600">Have questions? Send us a message and we'll get back to you.</p>
             </div>
 
-            <form className="grid gap-6">
+            {submitStatus === "success" && (
+              <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+                <p className="text-green-800">Thank you for your message! We'll get back to you soon.</p>
+              </div>
+            )}
+
+            {submitStatus === "error" && (
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                <p className="text-red-800">Something went wrong. Please try again.</p>
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="grid gap-6">
               <div className="grid sm:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">First name</label>
-                  <input type="text" className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="John" />
+                  <input 
+                    type="text" 
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
+                    placeholder="John" 
+                  />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Last name</label>
-                  <input type="text" className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Doe" />
+                  <input 
+                    type="text" 
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
+                    placeholder="Doe" 
+                  />
                 </div>
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                <input type="email" className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="you@example.com" />
+                <input 
+                  type="email" 
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
+                  placeholder="you@example.com" 
+                />
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                <textarea className="w-full rounded-lg border border-gray-300 px-4 py-3 h-32 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="How can we help?" />
+                <textarea 
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full rounded-lg border border-gray-300 px-4 py-3 h-32 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
+                  placeholder="How can we help?" 
+                />
               </div>
 
-              <button type="submit" className="inline-flex items-center justify-center bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700">
-                Send message
+              <button 
+                type="submit" 
+                disabled={isSubmitting}
+                className="inline-flex items-center justify-center bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:scale-105"
+              >
+                {isSubmitting ? (
+                  <>
+                    <LoadingSpinner size="sm" />
+                    <span className="ml-2">Sending...</span>
+                  </>
+                ) : (
+                  "Send message"
+                )}
               </button>
             </form>
           </div>
