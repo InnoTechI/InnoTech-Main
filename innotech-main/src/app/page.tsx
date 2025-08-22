@@ -1,54 +1,54 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section id="home" className="relative bg-gray-50 py-20 lg:py-32">
+      <section id="home" className="relative bg-white pt-6 pb-20 lg:pb-24">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left Content */}
-            <div className="space-y-8">
-              <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                Empowering Tech Intelligence
-              </h1>
-              <p className="text-xl text-gray-600 max-w-lg">
-                Comprehensive tech education and training programs designed to empower your career growth
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <button className="inline-flex items-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-full font-medium hover:bg-blue-700 transition-colors">
-                  Get Started
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </button>
-                <button className="inline-flex items-center border border-gray-300 text-gray-700 px-8 py-4 rounded-full font-medium hover:bg-gray-50 transition-colors">
-                  Learn More
-                </button>
+          <div
+            className="relative rounded-3xl overflow-hidden bg-gray-100"
+            style={{
+              backgroundImage: "url('/images/1.png')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            {/* Overlay to reduce background intensity */}
+            <div className="absolute inset-0 bg-white/20"></div>
+
+            {/* Foreground content layer for text and buttons */}
+            <div className="relative z-10">
+              <div className="px-4 sm:px-8 lg:px-10 pt-10 lg:pt-14">
+                <h1 className="font-extrabold leading-[0.9] text-[#0a1b33] drop-shadow-sm"
+                  style={{
+                    fontSize: "clamp(2.5rem, 6vw, 6.5rem)",
+                    letterSpacing: "-0.02em",
+                  }}
+                >
+                  Empowering Tech<br />
+                  Intelligence
+                </h1>
               </div>
-            </div>
-            
-            {/* Right Content - Hero Image */}
-            <div className="relative">
-              <div className="relative z-10">
-                <div className="bg-white rounded-2xl shadow-xl p-8">
-                  <div className="aspect-video bg-gray-100 rounded-lg flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                        </svg>
-                      </div>
-                      <p className="text-gray-600">Hero Image Placeholder</p>
-                    </div>
-                  </div>
+
+              {/* CTA Buttons - bottom right */}
+              <div className="pointer-events-none relative">
+                <div className="pointer-events-auto absolute right-4 bottom-4 sm:right-6 sm:bottom-6 lg:right-8 lg:bottom-8 flex items-center gap-4">
+                  <a href="#services" className="group inline-flex items-center gap-2 rounded-full bg-white/80 backdrop-blur px-5 py-3 text-sm font-semibold text-gray-800 shadow-md ring-1 ring-black/10 hover:bg-white">
+                    Get Started
+                    <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-gray-900 text-white">
+                      <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H7" />
+                      </svg>
+                    </span>
+                  </a>
+                  <a href="#about" className="inline-flex items-center gap-2 rounded-full bg-white/80 backdrop-blur px-5 py-3 text-sm font-medium text-gray-900 shadow-md ring-1 ring-black/10 hover:bg-white">
+                    Learn More
+                  </a>
                 </div>
               </div>
-              
-              {/* Decorative Elements */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-red-500 rounded-full opacity-20 -z-10"></div>
-              <div className="absolute bottom-0 left-0 w-24 h-24 bg-gray-300 rounded-full opacity-30 -z-10"></div>
             </div>
+
+            {/* Aspect spacer to control hero height */}
+            <div className="pt-[42%] sm:pt-[38%] lg:pt-[36%]"></div>
           </div>
         </div>
       </section>
@@ -71,55 +71,190 @@ export default function Home() {
           {/* About Cards */}
           <div className="grid md:grid-cols-3 gap-8">
             {/* Technology Card */}
-            <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-              <div className="h-48 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                <div className="text-center text-white">
-                  <svg className="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                  <p className="text-sm opacity-80">Technology</p>
-                </div>
+            <div className="border border-gray-200 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow" style={{background:"rgba(17, 27, 58, 1)"}}>
+              <div className="h-48 bg-gray-900/10 flex items-center justify-center">
+                <img src="/images/2.png" alt="Technology" className="h-full w-full object-cover" />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Technology</h3>
-                <p className="text-gray-600">Cutting-edge solutions for modern business</p>
+                <h3 className="text-xl font-semibold text-white mb-2">Technology</h3>
+                <p className="text-gray-200">Cutting-edge solutions for modern business</p>
               </div>
             </div>
 
             {/* Data Science Card */}
-            <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-              <div className="h-48 bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
-                <div className="text-center text-white">
-                  <svg className="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                  </svg>
-                  <p className="text-sm opacity-80">Data Science</p>
-                </div>
+            <div className="border border-gray-200 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow" style={{background:"rgba(17, 27, 58, 1)"}}>
+              <div className="h-48 bg-gray-900/10 flex items-center justify-center">
+                <img src="/images/3.png" alt="Data Science" className="h-full w-full object-cover" />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Data Science</h3>
-                <p className="text-gray-600">Data-driven insights and analytics solutions</p>
+                <h3 className="text-xl font-semibold text-white mb-2">Data Science</h3>
+                <p className="text-gray-200">Data-driven insights and analytics solutions</p>
               </div>
             </div>
 
             {/* AI/ML Card */}
-            <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-              <div className="h-48 bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
-                <div className="text-center text-white">
-                  <svg className="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                  </svg>
-                  <p className="text-sm opacity-80">AI / ML</p>
-                </div>
+            <div className="border border-gray-200 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow" style={{background:"rgba(17, 27, 58, 1)"}}>
+              <div className="h-48 bg-gray-900/10 flex items-center justify-center">
+                <img src="/images/4.png" alt="AI / ML" className="h-full w-full object-cover" />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">AI / ML</h3>
-                <p className="text-gray-600">Cutting-edge artificial intelligence and machine learning</p>
+                <h3 className="text-xl font-semibold text-white mb-2">AI / ML</h3>
+                <p className="text-gray-200">Cutting-edge artificial intelligence and machine learning</p>
               </div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Services Section */}
+      <section id="services" className="py-20 bg-gray-50">
+        <div className="container mx auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
+            <p className="text-gray-600 max-w-3xl mx-auto">Hands-on, industry-aligned programs and services to accelerate your growth.</p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { title: "Cybersecurity Bootcamps", desc: "Real-world labs and threat modeling" },
+              { title: "AI/ML Programs", desc: "From fundamentals to advanced deep learning" },
+              { title: "Data Science Tracks", desc: "End-to-end analytics and MLOps" },
+              { title: "Workshops & Seminars", desc: "Weekend intensives led by experts" },
+              { title: "Career Mentorship", desc: "Resume, interviews, and project reviews" },
+              { title: "Corporate Training", desc: "Upskill teams with custom curricula" },
+            ].map((card) => (
+              <div key={card.title} className="group rounded-xl p-6 shadow-sm hover:shadow-lg transition-shadow" style={{background:"rgba(17, 27, 58, 1)"}}>
+                <div className="w-12 h-12 rounded-lg bg-white/10 text-blue-200 flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold text-white">{card.title}</h3>
+                <p className="text-gray-200 mt-2">{card.desc}</p>
+                <a href="#contact" className="inline-flex items-center text-blue-200 mt-4 hover:underline">
+                  Learn more
+                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H7" />
+                  </svg>
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Offers Section */}
+      <section id="offers" className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* For Students */}
+            <div className="rounded-2xl border border-gray-200 p-8 bg-gradient-to-br from-blue-50 to-white">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-2">For Students</h3>
+              <p className="text-gray-600 mb-6">Kickstart your tech career with structured learning paths, mentorship, and real-world projects.</p>
+              <ul className="space-y-3 text-gray-700">
+                <li className="flex items-start gap-2"><span className="text-blue-600 mt-1">•</span> Foundations to advanced tracks</li>
+                <li className="flex items-start gap-2"><span className="text-blue-600 mt-1">•</span> Capstone projects and internships</li>
+                <li className="flex items-start gap-2"><span className="text-blue-600 mt-1">•</span> Career guidance and placement support</li>
+              </ul>
+              <button className="mt-6 inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">Explore Student Paths</button>
+            </div>
+
+            {/* For IT Professionals */}
+            <div className="rounded-2xl border border-gray-200 p-8 bg-gradient-to-br from-slate-50 to-white">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-2">For IT Professionals</h3>
+              <p className="text-gray-600 mb-6">Advance your career with specialized upskilling, certifications, and leadership programs.</p>
+              <ul className="space-y-3 text-gray-700">
+                <li className="flex items-start gap-2"><span className="text-blue-600 mt-1">•</span> Specialized certifications</li>
+                <li className="flex items-start gap-2"><span className="text-blue-600 mt-1">•</span> Architect and leadership tracks</li>
+                <li className="flex items-start gap-2"><span className="text-blue-600 mt-1">•</span> Hands-on labs with expert mentors</li>
+              </ul>
+              <button className="mt-6 inline-flex items-center border border-blue-600 text-blue-600 px-6 py-3 rounded-lg hover:bg-blue-50">Explore Pro Tracks</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mission & Vision Section */}
+      <section id="mission" className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Our Mission & Vision</h2>
+            <p className="text-gray-600 max-w-3xl mx-auto">We are committed to democratizing access to high-quality tech education and building future-ready talent.</p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { title: "Excellence", desc: "Delivering industry-grade, practical learning" },
+              { title: "Innovation", desc: "Embracing cutting-edge tools and methods" },
+              { title: "Integrity", desc: "Building trust through transparency" },
+              { title: "Impact", desc: "Creating measurable career outcomes" },
+            ].map((value) => (
+              <div key={value.title} className="rounded-xl border border-gray-200 bg-white p-6">
+                <div className="w-10 h-10 rounded-md bg-blue-50 text-blue-600 flex items-center justify-center mb-3">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900">{value.title}</h3>
+                <p className="text-gray-600 mt-2">{value.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto">
+            <div className="text-center mb-10">
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-3">Contact Us</h2>
+              <p className="text-gray-600">Have questions? Send us a message and we’ll get back to you.</p>
+            </div>
+
+            <form className="grid gap-6">
+              <div className="grid sm:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">First name</label>
+                  <input type="text" className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="John" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Last name</label>
+                  <input type="text" className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Doe" />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                <input type="email" className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="you@example.com" />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                <textarea className="w-full rounded-lg border border-gray-300 px-4 py-3 h-32 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="How can we help?" />
+              </div>
+
+              <button type="submit" className="inline-flex items-center justify-center bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700">
+                Send message
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-50 border-t border-gray-200 py-8">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p className="text-sm text-gray-600">© {new Date().getFullYear()} Inno-Tech. All rights reserved.</p>
+            <div className="flex gap-4 text-sm text-gray-600">
+              <a href="#about" className="hover:underline">About</a>
+              <a href="#services" className="hover:underline">Services</a>
+              <a href="#contact" className="hover:underline">Contact</a>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
