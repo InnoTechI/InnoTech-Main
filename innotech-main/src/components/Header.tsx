@@ -14,21 +14,12 @@ const navItems = [
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-black/10 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+    <header className="sticky top-0 z-50 w-full border-b border-black/10 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link href="#home" className="flex items-center gap-2">
-            <div className="flex items-center gap-2">
-              <div className="flex">
-                <div className="w-6 h-6 bg-orange-500 rounded-sm"></div>
-                <div className="w-6 h-6 bg-blue-500 rounded-sm -ml-1"></div>
-              </div>
-              <span className="text-lg font-bold">
-                <span className="text-orange-500">INNO</span>
-                <span className="text-blue-500">-TECH</span>
-              </span>
-            </div>
+          <Link href="#home" className="flex items-center">
+            <Image src="/images/16.png" alt="Inno-Tech" width={40} height={40} className="h-10 w-10 rounded-sm" />
           </Link>
 
           {/* Navigation */}
