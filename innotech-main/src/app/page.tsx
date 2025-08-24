@@ -605,14 +605,80 @@ real-world datasets and industry tools.</p>
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-50 border-t border-gray-200 py-8">
+      <footer className="py-12" style={{background:"rgba(17, 27, 58, 1)"}}>
         <div className="container mx-auto px-4">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-gray-600">© {new Date().getFullYear()} Inno-Tech. All rights reserved.</p>
-            <div className="flex gap-4 text-sm text-gray-600">
-              <a href="#about" className="hover:underline">About</a>
-              <a href="#services" className="hover:underline">Services</a>
-              <a href="#contact" className="hover:underline">Contact</a>
+          {/* Top Section - Three Columns */}
+          <div className="grid md:grid-cols-3 gap-8 mb-6">
+            {/* Left Column - Company Information */}
+            <div className="space-y-4">
+              {/* Logo Only */}
+              <div className="mb-4">
+                <img 
+                  src="/images/16.png" 
+                  alt="INNO-TECH Logo" 
+                  className="h-10 w-10"
+                  style={{
+                    transform: "rotate(0deg)",
+                    opacity: 1,
+                    marginTop: "61px",
+                    marginLeft: "131px"
+                  }}
+                />
+              </div>
+              
+              {/* Company Slogan/Description */}
+              <div className="text-gray-300 space-y-1 text-sm">
+                <p>Innovating Tomorrow, Securing Today.</p>
+                <p>Empowering individuals in</p>
+                <p>Cybersecurity, AI / ML and Data Science</p>
+                <p>through expert-led education</p>
+              </div>
+              
+              {/* Social Media Links */}
+              <div className="flex gap-4 pt-4">
+                <a href="#" className="text-gray-300 hover:text-white transition-colors">Twitter</a>
+                <a href="#" className="text-gray-300 hover:text-white transition-colors">Linkedin</a>
+                <a href="#" className="text-gray-300 hover:text-white transition-colors">Github</a>
+                <a href="#" className="text-gray-300 hover:text-white transition-colors">Messages</a>
+              </div>
+            </div>
+
+            {/* Middle Column - Quick Links */}
+            <div className="space-y-4 md:ml-auto">
+              <h3 className="text-white font-semibold text-lg mb-4">Quick Links</h3>
+              <div className="space-y-2">
+                <a href="#about" className="block text-gray-300 hover:text-white transition-colors">About Us</a>
+                <a href="#services" className="block text-gray-300 hover:text-white transition-colors">Services</a>
+                <a href="#offers" className="block text-gray-300 hover:text-white transition-colors">What We Offer</a>
+                <a href="#contact" className="block text-gray-300 hover:text-white transition-colors">Contact</a>
+              </div>
+            </div>
+
+            {/* Right Column - Our Services */}
+            <div className="space-y-4 md:ml-auto">
+              <h3 className="text-white font-semibold text-lg mb-4">Our Services</h3>
+              <div className="space-y-2">
+                <a href="#services" className="block text-gray-300 hover:text-white transition-colors">Cybersecurity</a>
+                <a href="#services" className="block text-gray-300 hover:text-white transition-colors">AI / ML</a>
+                <a href="#services" className="block text-gray-300 hover:text-white transition-colors">Data Science</a>
+                <a href="#services" className="block text-gray-300 hover:text-white transition-colors">Tech Workshops</a>
+                <a href="#services" className="block text-gray-300 hover:text-white transition-colors">Internship Programs</a>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Section - Separator Line */}
+          <div className="border-t border-gray-600 pt-6">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+              {/* Copyright Information */}
+              <p className="text-gray-300 text-sm">© 2025 INNO-TECH. All rights reserved.</p>
+              
+              {/* Legal Links */}
+              <div className="flex gap-4 text-sm">
+                <a href="#" className="text-gray-300 hover:text-white transition-colors">Privacy Policy</a>
+                <a href="#" className="text-gray-300 hover:text-white transition-colors">Terms of Service</a>
+                <a href="#" className="text-gray-300 hover:text-white transition-colors">Cookie Policy</a>
+              </div>
             </div>
           </div>
         </div>
