@@ -46,20 +46,21 @@ export default function Home() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section id="home" className="relative bg-white pt-6 pb-20 lg:pb-24">
-        <div className="container mx-auto px-4">
+        <div className="w-full px-3 sm:px-4 lg:px-6">
           <div
-            className="relative rounded-3xl overflow-hidden bg-gray-100"
+            className="relative overflow-hidden bg-gray-100 rounded-3xl"
             style={{
               backgroundImage: "url('/images/1.png')",
               backgroundSize: "cover",
               backgroundPosition: "center",
+              minHeight: "100vh",
             }}
           >
             {/* Overlay to reduce background intensity */}
             <div className="absolute inset-0 bg-white/20"></div>
 
             {/* Foreground content layer for text and buttons */}
-            <div className="relative z-10">
+            <div className="relative z-10 h-full flex flex-col justify-between">
               <div className="px-4 sm:px-8 lg:px-10 pt-10 lg:pt-14">
                 <h1 className="font-extrabold leading-[0.9] text-[#0a1b33] drop-shadow-sm"
                   style={{
@@ -73,11 +74,11 @@ export default function Home() {
               </div>
 
               {/* CTA Buttons - bottom right */}
-              <div className="pointer-events-none relative">
-                <div className="pointer-events-auto absolute right-4 bottom-4 sm:right-6 sm:bottom-6 lg:right-8 lg:bottom-8 flex items-center gap-4">
+              <div className="pointer-events-none">
+                <div className="pointer-events-auto absolute bottom-6 right-6 flex flex-col items-end gap-3">
                   <button 
                     onClick={() => scrollToSection('#services')}
-                    className="group inline-flex items-center gap-2 rounded-full bg-white/80 backdrop-blur px-5 py-3 text-sm font-semibold text-gray-800 shadow-md ring-1 ring-black/10 hover:bg-white transition-all duration-200 hover:scale-105"
+                    className="group inline-flex items-center gap-2 rounded-full bg-white/80 backdrop-blur px-6 py-4 text-base font-semibold text-gray-800 shadow-md ring-1 ring-black/10 hover:bg-white transition-all duration-200 hover:scale-105"
                   >
                     Get Started
                     <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-gray-900 text-white">
@@ -88,16 +89,13 @@ export default function Home() {
                   </button>
                   <button 
                     onClick={() => scrollToSection('#about')}
-                    className="inline-flex items-center gap-2 rounded-full bg-white/80 backdrop-blur px-5 py-3 text-sm font-medium text-gray-900 shadow-md ring-1 ring-black/10 hover:bg-white transition-all duration-200 hover:scale-105"
+                    className="inline-flex items-center gap-2 rounded-full bg-white/80 backdrop-blur px-6 py-4 text-base font-medium text-gray-900 shadow-md ring-1 ring-black/10 hover:bg-white transition-all duration-200 hover:scale-105"
                   >
                     Learn More
                   </button>
                 </div>
               </div>
             </div>
-
-            {/* Aspect spacer to control hero height */}
-            <div className="pt-[42%] sm:pt-[38%] lg:pt-[36%]"></div>
           </div>
         </div>
       </section>
@@ -166,7 +164,7 @@ export default function Home() {
       {/* Mission & Vision Section (moved first) */}
       <section id="mission" className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="mb-10">
+          <div className="mb-8">
             <h2 className="font-bold text-gray-900"
               style={{
                 fontFamily: "Inter, ui-sans-serif, system-ui",
@@ -178,7 +176,64 @@ export default function Home() {
             >
               Our Mission & Vision
             </h2>
-            <p className="text-gray-600 max-w-3xl mt-4">We are committed to democratizing access to high-quality tech education and building future-ready talent.</p>
+            {/* Removed extra descriptive paragraph per request */}
+          </div>
+
+          {/* Compact Vision & Mission copy above the cards */}
+          <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-6 mb-8">
+            <div className="relative rounded-xl bg-white p-6 pt-14">
+              <div className="absolute top-4 left-4 w-8 h-8">
+                <img src="/images/vision-icon.png" alt="Our Vision Icon" className="w-full h-full object-contain" />
+              </div>
+              <h3 className="text-gray-900 mb-3"
+                style={{
+                  fontFamily: "Inter, ui-sans-serif, system-ui",
+                  fontWeight: 700,
+                  fontSize: "28px",
+                  lineHeight: "36px",
+                  letterSpacing: "-0.02em",
+                }}
+              >
+                Our Vision
+              </h3>
+              <p className="text-gray-700"
+                style={{
+                  fontFamily: "Inter, ui-sans-serif, system-ui",
+                  fontWeight: 400,
+                  fontSize: "16px",
+                  lineHeight: "26px",
+                }}
+              >
+                Our Mission is to offer expert-led lectures, hand-on workshops, and internships to empower individuals in the tech world.
+              </p>
+            </div>
+
+            <div className="relative rounded-xl bg-white p-6 pt-14">
+              <div className="absolute top-4 left-4 w-8 h-8">
+                <img src="/images/mission-icon.png" alt="Our Mission Icon" className="w-full h-full object-contain" />
+              </div>
+              <h3 className="text-gray-900 mb-3"
+                style={{
+                  fontFamily: "Inter, ui-sans-serif, system-ui",
+                  fontWeight: 700,
+                  fontSize: "28px",
+                  lineHeight: "36px",
+                  letterSpacing: "-0.02em",
+                }}
+              >
+                Our Mission
+              </h3>
+              <p className="text-gray-700"
+                style={{
+                  fontFamily: "Inter, ui-sans-serif, system-ui",
+                  fontWeight: 400,
+                  fontSize: "16px",
+                  lineHeight: "26px",
+                }}
+              >
+                We empower IT Professionals and students with resources, tools, and expertise to remain informed and skilled in the digital age.
+              </p>
+            </div>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
@@ -211,6 +266,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Vision & Mission compact section moved above cards (see Mission section) */}
 
       {/* Offers Section (second) */}
       <section id="offers" className="py-20 bg-white">
@@ -511,124 +568,237 @@ real-world datasets and industry tools.</p>
         </div>
       </section>
 
+      {/* Testimonials */}
+      <section id="testimonials" className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="mb-10 max-w-4xl">
+            <h2 className="font-bold text-gray-900"
+              style={{
+                fontFamily: "Inter, ui-sans-serif, system-ui",
+                fontWeight: 700,
+                fontSize: "48px",
+                lineHeight: "56px",
+                letterSpacing: "-0.04em",
+              }}
+            >
+              What our Learners Say
+            </h2>
+            <p className="text-gray-600 mt-4 text-lg">
+              Comprehensive tech education and training programs
+              designed to empower your career growth
+            </p>
+          </div>
+
+          <div className="relative">
+            <div
+              className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-2"
+              style={{ scrollbarWidth: "thin" }}
+            >
+              {/* Card 1 */}
+              <div className="snap-start shrink-0 w-[320px] md:w-[360px] rounded-2xl bg-white border border-gray-200 p-6 shadow-sm">
+                <p className="text-gray-700 leading-7">
+                  "Working with Adorn was a game-changer for our business.
+                  Their expertise in web design helped us create a stunning online
+                  presence that resonated with our audience."
+                </p>
+                <div className="mt-6 flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-full bg-gray-300" />
+                  <div>
+                    <p className="text-gray-900 font-medium">Lorem Ipsum</p>
+                    <p className="text-gray-500 text-sm">XYZ</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 2 */}
+              <div className="snap-start shrink-0 w-[320px] md:w-[360px] rounded-2xl bg-white border border-gray-200 p-6 shadow-sm">
+                <p className="text-gray-700 leading-7">
+                  "Working with Adorn was a game-changer for our business.
+                  Their expertise in web design helped us create a stunning online
+                  presence that resonated with our audience."
+                </p>
+                <div className="mt-6 flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-full bg-rose-300" />
+                  <div>
+                    <p className="text-gray-900 font-medium">Lorem Ipsum</p>
+                    <p className="text-gray-500 text-sm">XYZ</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 3 */}
+              <div className="snap-start shrink-0 w-[320px] md:w-[360px] rounded-2xl bg-white border border-gray-200 p-6 shadow-sm">
+                <p className="text-gray-700 leading-7">
+                  "Working with Adorn was a game-changer for our business.
+                  Their expertise in web design helped us create a stunning online
+                  presence that resonated with our audience."
+                </p>
+                <div className="mt-6 flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-full bg-gray-300 overflow-hidden">
+                    <img src="/images/10.png" alt="avatar" className="w-full h-full object-cover" />
+                  </div>
+                  <div>
+                    <p className="text-gray-900 font-medium">Lorem Ipsum</p>
+                    <p className="text-gray-500 text-sm">XYZ</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 4 */}
+              <div className="snap-start shrink-0 w-[320px] md:w-[360px] rounded-2xl bg-white border border-gray-200 p-6 shadow-sm">
+                <p className="text-gray-700 leading-7">
+                  "Working with Adorn was a game-changer for our business.
+                  Their expertise in web design helped us create a stunning online
+                  presence that resonated with our audience."
+                </p>
+                <div className="mt-6 flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-full bg-gray-300 overflow-hidden">
+                    <img src="/images/11.png" alt="avatar" className="w-full h-full object-cover" />
+                  </div>
+                  <div>
+                    <p className="text-gray-900 font-medium">Lorem Ipsum</p>
+                    <p className="text-gray-500 text-sm">XYZ</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 5 */}
+              <div className="snap-start shrink-0 w-[320px] md:w-[360px] rounded-2xl bg-white border border-gray-200 p-6 shadow-sm">
+                <p className="text-gray-700 leading-7">"Outstanding mentoring and a clear path to growth."</p>
+                <div className="mt-6 flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-full bg-indigo-300" />
+                  <div>
+                    <p className="text-gray-900 font-medium">Alex Morgan</p>
+                    <p className="text-gray-500 text-sm">ABC</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 6 */}
+              <div className="snap-start shrink-0 w-[320px] md:w-[360px] rounded-2xl bg-white border border-gray-200 p-6 shadow-sm">
+                <p className="text-gray-700 leading-7">"Great hands-on projects and supportive community."</p>
+                <div className="mt-6 flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-full bg-emerald-300" />
+                  <div>
+                    <p className="text-gray-900 font-medium">Jamie Lee</p>
+                    <p className="text-gray-500 text-sm">DEF</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 7 */}
+              <div className="snap-start shrink-0 w-[320px] md:w-[360px] rounded-2xl bg-white border border-gray-200 p-6 shadow-sm">
+                <p className="text-gray-700 leading-7">"Practical, current, and career-focused content."</p>
+                <div className="mt-6 flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-full bg-amber-300" />
+                  <div>
+                    <p className="text-gray-900 font-medium">Taylor Ray</p>
+                    <p className="text-gray-500 text-sm">GHI</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 8 */}
+              <div className="snap-start shrink-0 w-[320px] md:w-[360px] rounded-2xl bg-white border border-gray-200 p-6 shadow-sm">
+                <p className="text-gray-700 leading-7">"Helped me transition into a tech role with confidence."</p>
+                <div className="mt-6 flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-full bg-fuchsia-300" />
+                  <div>
+                    <p className="text-gray-900 font-medium">Riley Chen</p>
+                    <p className="text-gray-500 text-sm">JKL</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 9 */}
+              <div className="snap-start shrink-0 w-[320px] md:w-[360px] rounded-2xl bg-white border border-gray-200 p-6 shadow-sm">
+                <p className="text-gray-700 leading-7">"The mentorship was top-notch and actionable."</p>
+                <div className="mt-6 flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-full bg-sky-300" />
+                  <div>
+                    <p className="text-gray-900 font-medium">Jordan P.</p>
+                    <p className="text-gray-500 text-sm">MNO</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 10 */}
+              <div className="snap-start shrink-0 w-[320px] md:w-[360px] rounded-2xl bg-white border border-gray-200 p-6 shadow-sm">
+                <p className="text-gray-700 leading-7">"Clear curriculum and real-world assignments made all the difference."</p>
+                <div className="mt-6 flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-full bg-lime-300" />
+                  <div>
+                    <p className="text-gray-900 font-medium">Sam K.</p>
+                    <p className="text-gray-500 text-sm">PQR</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Contact Section */}
       <section id="contact" className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto">
-            <div className="text-center mb-10">
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-3">Contact Us</h2>
-              <p className="text-gray-600">Have questions? Send us a message and we'll get back to you.</p>
+          <div className="max-w-4xl mx-auto relative">
+            {/* Decorative Image - Top Right Corner */}
+            <div className="absolute top-0 right-0 w-32 h-32 lg:w-40 lg:h-40">
+              <img src="/images/contact-image.png" alt="Contact Decoration" className="w-full h-full object-contain" />
             </div>
 
-            {submitStatus === "success" && (
-              <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
-                <p className="text-green-800">Thank you for your message! We'll get back to you soon.</p>
-              </div>
-            )}
+            {/* Main Content */}
+            <div className="pr-40 lg:pr-48">
+              {/* Heading */}
+              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">Get in Touch</h2>
+              
+              {/* Introductory Paragraph */}
+              <p className="text-lg text-gray-600 mb-8 max-w-2xl">
+                Ready to start your tech journey? Contact us today and let's discuss how we can help you achieve your goals.
+              </p>
 
-            {submitStatus === "error" && (
-              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
-                <p className="text-red-800">Something went wrong. Please try again.</p>
-              </div>
-            )}
-
-            <form onSubmit={handleSubmit} className="grid gap-6">
-              <div className="grid sm:grid-cols-2 gap-6">
+              {/* Contact Information */}
+              <div className="grid md:grid-cols-3 gap-8 mb-12">
+                {/* Email */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">First name</label>
-                  <input 
-                    type="text" 
-                    name="firstName"
-                    value={formData.firstName}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
-                    placeholder="John" 
-                  />
+                  <p className="text-sm text-gray-500 mb-1">(email)</p>
+                  <p className="text-lg font-bold text-gray-900">Innotech.hello@gmail.com</p>
                 </div>
+
+                {/* Phone */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Last name</label>
-                  <input 
-                    type="text" 
-                    name="lastName"
-                    value={formData.lastName}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
-                    placeholder="Doe" 
-                  />
+                  <p className="text-sm text-gray-500 mb-1">(Phone)</p>
+                  <p className="text-lg font-bold text-gray-900">+911234567898</p>
+                </div>
+
+                {/* Website/Blog */}
+                <div>
+                  <p className="text-sm text-gray-500 mb-1">(Website / blog)</p>
+                  <p className="text-lg font-bold text-gray-900">techv004.blogspot.com</p>
                 </div>
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                <input 
-                  type="email" 
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
-                  placeholder="you@example.com" 
-                />
-              </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                <textarea 
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full rounded-lg border border-gray-300 px-4 py-3 h-32 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
-                  placeholder="How can we help?" 
-                />
-              </div>
-
-              <button 
-                type="submit" 
-                disabled={isSubmitting}
-                className="inline-flex items-center justify-center bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:scale-105"
-              >
-                {isSubmitting ? (
-                  <>
-                    <LoadingSpinner size="sm" />
-                    <span className="ml-2">Sending...</span>
-                  </>
-                ) : (
-                  "Send message"
-                )}
-              </button>
-            </form>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-12" style={{background:"rgba(17, 27, 58, 1)"}}>
+      <footer className="py-16" style={{background:"rgba(17, 27, 58, 1)"}}>
         <div className="container mx-auto px-4">
           {/* Top Section - Three Columns */}
-          <div className="grid md:grid-cols-3 gap-8 mb-6">
+          <div className="grid md:grid-cols-3 gap-8 mb-8">
             {/* Left Column - Company Information */}
             <div className="space-y-4">
               {/* Logo Only */}
               <div className="mb-4">
-                <img 
-                  src="/images/16.png" 
-                  alt="INNO-TECH Logo" 
-                  className="h-10 w-10"
-                  style={{
-                    transform: "rotate(0deg)",
-                    opacity: 1,
-                    marginTop: "61px",
-                    marginLeft: "131px"
-                  }}
-                />
+                <img src="/images/16.png" alt="INNO-TECH Logo" className="h-16 w-16" />
               </div>
               
               {/* Company Slogan/Description */}
               <div className="text-gray-300 space-y-1 text-sm">
-                <p>Innovating Tomorrow, Securing Today.</p>
+                <p className="text-white">Innovating Tomorrow, Securing Today.</p>
                 <p>Empowering individuals in</p>
                 <p>Cybersecurity, AI / ML and Data Science</p>
                 <p>through expert-led education</p>
@@ -668,7 +838,7 @@ real-world datasets and industry tools.</p>
           </div>
 
           {/* Bottom Section - Separator Line */}
-          <div className="border-t border-gray-600 pt-6">
+          <div className="border-t border-gray-600 pt-8">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
               {/* Copyright Information */}
               <p className="text-gray-300 text-sm">© 2025 INNO-TECH. All rights reserved.</p>
